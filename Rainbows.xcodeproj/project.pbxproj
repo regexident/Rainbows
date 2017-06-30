@@ -7,13 +7,76 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BF9D44DD1F05C8C60049F262 /* SpiralGradientViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9D44DB1F05C7CC0049F262 /* SpiralGradientViewController.swift */; };
+		BF9D44DE1F05C9610049F262 /* spiral.metal in Sources */ = {isa = PBXBuildFile; fileRef = BF9D44DC1F05C8820049F262 /* spiral.metal */; };
 		BFA2DD921EF6AF4B002FFCF8 /* Rainbows.h in Headers */ = {isa = PBXBuildFile; fileRef = BFA2DD901EF6AF4B002FFCF8 /* Rainbows.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BFA2DD9B1EF6B350002FFCF8 /* GradientRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA2DD9A1EF6AF75002FFCF8 /* GradientRenderer.swift */; };
+		BFA2DD9C1EF6B353002FFCF8 /* Gradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA2DD981EF6AF75002FFCF8 /* Gradient.swift */; };
+		BFA2DD9D1EF6B353002FFCF8 /* GradientLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA2DD991EF6AF75002FFCF8 /* GradientLayer.swift */; };
+		BFA2DD9F1EF6B492002FFCF8 /* axial.metal in Sources */ = {isa = PBXBuildFile; fileRef = BFA2DD9E1EF6B492002FFCF8 /* axial.metal */; };
+		BFA2DDA71EF7C140002FFCF8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA2DDA61EF7C140002FFCF8 /* AppDelegate.swift */; };
+		BFA2DDA91EF7C140002FFCF8 /* AxialGradientViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA2DDA81EF7C140002FFCF8 /* AxialGradientViewController.swift */; };
+		BFA2DDAB1EF7C140002FFCF8 /* RadialGradientViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA2DDAA1EF7C140002FFCF8 /* RadialGradientViewController.swift */; };
+		BFA2DDAE1EF7C140002FFCF8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFA2DDAC1EF7C140002FFCF8 /* Main.storyboard */; };
+		BFA2DDB31EF7C140002FFCF8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFA2DDB11EF7C140002FFCF8 /* LaunchScreen.storyboard */; };
+		BFA2DDB81EF7C153002FFCF8 /* Rainbows.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFA2DD8D1EF6AF4B002FFCF8 /* Rainbows.framework */; };
+		BFA2DDB91EF7C153002FFCF8 /* Rainbows.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BFA2DD8D1EF6AF4B002FFCF8 /* Rainbows.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		BFA2DDBE1EF7C1B8002FFCF8 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA2DDBD1EF7C1B8002FFCF8 /* GradientView.swift */; };
+		BFA2DDC01EF7C7FA002FFCF8 /* radial.metal in Sources */ = {isa = PBXBuildFile; fileRef = BFA2DDBF1EF7C7FA002FFCF8 /* radial.metal */; };
+		BFF1B2A41EF7DF1000619EAB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFF1B2A31EF7DDA600619EAB /* Assets.xcassets */; };
+		BFF1B2A61EF7E50C00619EAB /* SweepGradientViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF1B2A21EF7DBF300619EAB /* SweepGradientViewController.swift */; };
+		BFF1B2A81EF7E53900619EAB /* sweep.metal in Sources */ = {isa = PBXBuildFile; fileRef = BFF1B2A71EF7E53900619EAB /* sweep.metal */; };
+		BFF1B2AA1EF7F48700619EAB /* shared.metal in Sources */ = {isa = PBXBuildFile; fileRef = BFF1B2A91EF7F48700619EAB /* shared.metal */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		BFA2DDBA1EF7C153002FFCF8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFA2DD841EF6AF4B002FFCF8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BFA2DD8C1EF6AF4B002FFCF8;
+			remoteInfo = Rainbows;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		BFA2DDBC1EF7C153002FFCF8 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				BFA2DDB91EF7C153002FFCF8 /* Rainbows.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		BF9D44DB1F05C7CC0049F262 /* SpiralGradientViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpiralGradientViewController.swift; sourceTree = "<group>"; };
+		BF9D44DC1F05C8820049F262 /* spiral.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = spiral.metal; sourceTree = "<group>"; };
+		BF9D44E01F0654C90049F262 /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = System/Library/Frameworks/Metal.framework; sourceTree = SDKROOT; };
 		BFA2DD8D1EF6AF4B002FFCF8 /* Rainbows.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Rainbows.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFA2DD901EF6AF4B002FFCF8 /* Rainbows.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Rainbows.h; sourceTree = "<group>"; };
 		BFA2DD911EF6AF4B002FFCF8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BFA2DD981EF6AF75002FFCF8 /* Gradient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gradient.swift; sourceTree = "<group>"; };
+		BFA2DD991EF6AF75002FFCF8 /* GradientLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientLayer.swift; sourceTree = "<group>"; };
+		BFA2DD9A1EF6AF75002FFCF8 /* GradientRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientRenderer.swift; sourceTree = "<group>"; };
+		BFA2DD9E1EF6B492002FFCF8 /* axial.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = axial.metal; sourceTree = "<group>"; };
+		BFA2DDA41EF7C140002FFCF8 /* RainbowsDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RainbowsDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BFA2DDA61EF7C140002FFCF8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		BFA2DDA81EF7C140002FFCF8 /* AxialGradientViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AxialGradientViewController.swift; sourceTree = "<group>"; };
+		BFA2DDAA1EF7C140002FFCF8 /* RadialGradientViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadialGradientViewController.swift; sourceTree = "<group>"; };
+		BFA2DDAD1EF7C140002FFCF8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		BFA2DDB21EF7C140002FFCF8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		BFA2DDB41EF7C140002FFCF8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BFA2DDBD1EF7C1B8002FFCF8 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
+		BFA2DDBF1EF7C7FA002FFCF8 /* radial.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = radial.metal; sourceTree = "<group>"; };
+		BFF1B2A21EF7DBF300619EAB /* SweepGradientViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SweepGradientViewController.swift; sourceTree = "<group>"; };
+		BFF1B2A31EF7DDA600619EAB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		BFF1B2A71EF7E53900619EAB /* sweep.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = sweep.metal; sourceTree = "<group>"; };
+		BFF1B2A91EF7F48700619EAB /* shared.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = shared.metal; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -24,14 +87,44 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		BFA2DDA11EF7C140002FFCF8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BFA2DDB81EF7C153002FFCF8 /* Rainbows.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BF231A481EFBE2B6000BC375 /* Shaders */ = {
+			isa = PBXGroup;
+			children = (
+				BFF1B2A91EF7F48700619EAB /* shared.metal */,
+				BFA2DD9E1EF6B492002FFCF8 /* axial.metal */,
+				BFA2DDBF1EF7C7FA002FFCF8 /* radial.metal */,
+				BFF1B2A71EF7E53900619EAB /* sweep.metal */,
+				BF9D44DC1F05C8820049F262 /* spiral.metal */,
+			);
+			path = Shaders;
+			sourceTree = "<group>";
+		};
+		BF9D44DF1F0654C80049F262 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BF9D44E01F0654C90049F262 /* Metal.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		BFA2DD831EF6AF4B002FFCF8 = {
 			isa = PBXGroup;
 			children = (
 				BFA2DD8F1EF6AF4B002FFCF8 /* Rainbows */,
+				BFA2DDA51EF7C140002FFCF8 /* RainbowsDemo */,
 				BFA2DD8E1EF6AF4B002FFCF8 /* Products */,
+				BF9D44DF1F0654C80049F262 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -39,6 +132,7 @@
 			isa = PBXGroup;
 			children = (
 				BFA2DD8D1EF6AF4B002FFCF8 /* Rainbows.framework */,
+				BFA2DDA41EF7C140002FFCF8 /* RainbowsDemo.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -46,10 +140,31 @@
 		BFA2DD8F1EF6AF4B002FFCF8 /* Rainbows */ = {
 			isa = PBXGroup;
 			children = (
+				BF231A481EFBE2B6000BC375 /* Shaders */,
+				BFA2DD981EF6AF75002FFCF8 /* Gradient.swift */,
+				BFA2DD991EF6AF75002FFCF8 /* GradientLayer.swift */,
+				BFA2DDBD1EF7C1B8002FFCF8 /* GradientView.swift */,
+				BFA2DD9A1EF6AF75002FFCF8 /* GradientRenderer.swift */,
 				BFA2DD901EF6AF4B002FFCF8 /* Rainbows.h */,
 				BFA2DD911EF6AF4B002FFCF8 /* Info.plist */,
 			);
 			path = Rainbows;
+			sourceTree = "<group>";
+		};
+		BFA2DDA51EF7C140002FFCF8 /* RainbowsDemo */ = {
+			isa = PBXGroup;
+			children = (
+				BFA2DDA61EF7C140002FFCF8 /* AppDelegate.swift */,
+				BFA2DDA81EF7C140002FFCF8 /* AxialGradientViewController.swift */,
+				BFA2DDAA1EF7C140002FFCF8 /* RadialGradientViewController.swift */,
+				BFF1B2A21EF7DBF300619EAB /* SweepGradientViewController.swift */,
+				BF9D44DB1F05C7CC0049F262 /* SpiralGradientViewController.swift */,
+				BFF1B2A31EF7DDA600619EAB /* Assets.xcassets */,
+				BFA2DDAC1EF7C140002FFCF8 /* Main.storyboard */,
+				BFA2DDB11EF7C140002FFCF8 /* LaunchScreen.storyboard */,
+				BFA2DDB41EF7C140002FFCF8 /* Info.plist */,
+			);
+			path = RainbowsDemo;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -84,16 +199,39 @@
 			productReference = BFA2DD8D1EF6AF4B002FFCF8 /* Rainbows.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		BFA2DDA31EF7C140002FFCF8 /* RainbowsDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BFA2DDB51EF7C140002FFCF8 /* Build configuration list for PBXNativeTarget "RainbowsDemo" */;
+			buildPhases = (
+				BFA2DDA01EF7C140002FFCF8 /* Sources */,
+				BFA2DDA11EF7C140002FFCF8 /* Frameworks */,
+				BFA2DDA21EF7C140002FFCF8 /* Resources */,
+				BFA2DDBC1EF7C153002FFCF8 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BFA2DDBB1EF7C153002FFCF8 /* PBXTargetDependency */,
+			);
+			name = RainbowsDemo;
+			productName = RainbowsDemo;
+			productReference = BFA2DDA41EF7C140002FFCF8 /* RainbowsDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		BFA2DD841EF6AF4B002FFCF8 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0900;
 				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = "Vincent Esche";
 				TargetAttributes = {
 					BFA2DD8C1EF6AF4B002FFCF8 = {
+						CreatedOnToolsVersion = 9.0;
+					};
+					BFA2DDA31EF7C140002FFCF8 = {
 						CreatedOnToolsVersion = 9.0;
 					};
 				};
@@ -104,6 +242,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = BFA2DD831EF6AF4B002FFCF8;
 			productRefGroup = BFA2DD8E1EF6AF4B002FFCF8 /* Products */;
@@ -111,6 +250,7 @@
 			projectRoot = "";
 			targets = (
 				BFA2DD8C1EF6AF4B002FFCF8 /* Rainbows */,
+				BFA2DDA31EF7C140002FFCF8 /* RainbowsDemo */,
 			);
 		};
 /* End PBXProject section */
@@ -123,6 +263,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		BFA2DDA21EF7C140002FFCF8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BFF1B2A41EF7DF1000619EAB /* Assets.xcassets in Resources */,
+				BFA2DDB31EF7C140002FFCF8 /* LaunchScreen.storyboard in Resources */,
+				BFA2DDAE1EF7C140002FFCF8 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -130,10 +280,58 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BFF1B2A81EF7E53900619EAB /* sweep.metal in Sources */,
+				BFA2DDC01EF7C7FA002FFCF8 /* radial.metal in Sources */,
+				BF9D44DE1F05C9610049F262 /* spiral.metal in Sources */,
+				BFA2DD9B1EF6B350002FFCF8 /* GradientRenderer.swift in Sources */,
+				BFA2DD9C1EF6B353002FFCF8 /* Gradient.swift in Sources */,
+				BFF1B2AA1EF7F48700619EAB /* shared.metal in Sources */,
+				BFA2DDBE1EF7C1B8002FFCF8 /* GradientView.swift in Sources */,
+				BFA2DD9F1EF6B492002FFCF8 /* axial.metal in Sources */,
+				BFA2DD9D1EF6B353002FFCF8 /* GradientLayer.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BFA2DDA01EF7C140002FFCF8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BFA2DDAB1EF7C140002FFCF8 /* RadialGradientViewController.swift in Sources */,
+				BFA2DDA71EF7C140002FFCF8 /* AppDelegate.swift in Sources */,
+				BFA2DDA91EF7C140002FFCF8 /* AxialGradientViewController.swift in Sources */,
+				BF9D44DD1F05C8C60049F262 /* SpiralGradientViewController.swift in Sources */,
+				BFF1B2A61EF7E50C00619EAB /* SweepGradientViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		BFA2DDBB1EF7C153002FFCF8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BFA2DD8C1EF6AF4B002FFCF8 /* Rainbows */;
+			targetProxy = BFA2DDBA1EF7C153002FFCF8 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		BFA2DDAC1EF7C140002FFCF8 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BFA2DDAD1EF7C140002FFCF8 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		BFA2DDB11EF7C140002FFCF8 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BFA2DDB21EF7C140002FFCF8 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		BFA2DD931EF6AF4B002FFCF8 /* Debug */ = {
@@ -156,6 +354,8 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
@@ -214,6 +414,8 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
@@ -250,16 +452,18 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = Rainbows/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.regexident.Rainbows;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -269,16 +473,50 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = Rainbows/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.regexident.Rainbows;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		BFA2DDB61EF7C140002FFCF8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = RHSV5Y8MLD;
+				INFOPLIST_FILE = RainbowsDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.regexident.RainbowsDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		BFA2DDB71EF7C140002FFCF8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = RHSV5Y8MLD;
+				INFOPLIST_FILE = RainbowsDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.regexident.RainbowsDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -302,6 +540,16 @@
 				BFA2DD971EF6AF4B002FFCF8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BFA2DDB51EF7C140002FFCF8 /* Build configuration list for PBXNativeTarget "RainbowsDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BFA2DDB61EF7C140002FFCF8 /* Debug */,
+				BFA2DDB71EF7C140002FFCF8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
