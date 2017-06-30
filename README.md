@@ -7,14 +7,16 @@
 
 ## Usage
 
-Let's say you want to add a trippy spiral gradient to your view:
+Let's say you want to add a trippy noir spiral gradient to your view:
 
 ```swift
 import Rainbows
 
 let gradientLayer = GradientLayer()
-gradientLayer.gradient = Gradient.default
-gradientLayer.configuration = Configuration.spiral(
+gradientLayer.gradient = Gradient(colors: [
+    UIColor.black.cgColor, UIColor.white.cgColor
+])
+gradientLayer.configuration = .spiral(
     center: CGPoint(x: 0.5, y: 0.5),
     angle: 0.0 * CGFloat.pi * 2.0,
     scale: 1.0
@@ -29,8 +31,10 @@ Or just skip the detour via `self.layer` and use a convenient `GradientView`:
 import Rainbows
 
 let gradientView = GradientView()
-gradientView.gradient = Gradient.default
-gradientView.configuration = Configuration.spiral(
+gradientView.gradient = Gradient(colors: [
+    UIColor.black.cgColor, UIColor.white.cgColor
+])
+gradientView.configuration = .spiral(
     center: CGPoint(x: 0.5, y: 0.5),
     angle: 0.0 * CGFloat.pi * 2.0,
     scale: 1.0
