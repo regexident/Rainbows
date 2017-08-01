@@ -121,34 +121,34 @@ public class GradientRenderer {
     ) {
         self.device = device
 
-        self.commandQueue = self.device.makeCommandQueue()
+        self.commandQueue = self.device.makeCommandQueue()!
         self.commandQueue.label = "Main command queue"
 
         self.axialUniformsBuffer = device.makeBuffer(
             length: MemoryLayout<AxialUniforms>.stride,
             options: [.storageModeShared]
-        )
+        )!
         self.radialUniformsBuffer = device.makeBuffer(
             length: MemoryLayout<RadialUniforms>.stride,
             options: [.storageModeShared]
-        )
+        )!
         self.sweepUniformsBuffer = device.makeBuffer(
             length: MemoryLayout<SweepUniforms>.stride,
             options: [.storageModeShared]
-        )
+        )!
         self.spiralUniformsBuffer = device.makeBuffer(
             length: MemoryLayout<SpiralUniforms>.stride,
             options: [.storageModeShared]
-        )
+        )!
 
         self.colorsBuffer = device.makeBuffer(
             length: MemoryLayout<Color>.stride * GradientRenderer.maxStopsCount,
             options: [.storageModeShared]
-        )
+        )!
         self.locationsBuffer = device.makeBuffer(
             length: MemoryLayout<Location>.stride * GradientRenderer.maxStopsCount,
             options: [.storageModeShared]
-        )
+        )!
     }
 
     public func render(
@@ -187,17 +187,17 @@ public class GradientRenderer {
             pipelineState = try! self.device.makeComputePipelineState(function: self.spiralFunction)
         }
 
-        let commandEncoder = commandBuffer.makeComputeCommandEncoder()
-        commandEncoder.setComputePipelineState(pipelineState)
-        commandEncoder.setBuffer(uniformsBuffer, offset: 0, at: 0)
-        commandEncoder.setBuffer(colorsBuffer, offset: 0, at: 1)
-        commandEncoder.setBuffer(locationsBuffer, offset: 0, at: 2)
-        commandEncoder.setTexture(texture, at: 0)
-        commandEncoder.dispatchThreadgroups(threadGroups, threadsPerThreadgroup: threadGroupSize)
-        commandEncoder.endEncoding()
+        let commandEncoder = commandBuffer?.makeComputeCommandEncoder()
+        commandEncoder?.setComputePipelineState(pipelineState)
+        commandEncoder?.setBuffer(uniformsBuffer, offset: 0, index: 0)
+        commandEncoder?.setBuffer(colorsBuffer, offset: 0, index: 1)
+        commandEncoder?.setBuffer(locationsBuffer, offset: 0, index: 2)
+        commandEncoder?.setTexture(texture, index: 0)
+        commandEncoder?.dispatchThreadgroups(threadGroups, threadsPerThreadgroup: threadGroupSize)
+        commandEncoder?.endEncoding()
 
-        commandBuffer.present(drawable)
-        commandBuffer.commit()
+        commandBuffer?.present(drawable)
+        commandBuffer?.commit()
     }
 
     private static func library(device: MTLDevice) -> MTLLibrary {
