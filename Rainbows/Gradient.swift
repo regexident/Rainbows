@@ -86,6 +86,16 @@ extension Configuration {
         start: CGPoint(x: 0.0, y: 0.0),
         end: CGPoint(x: 1.0, y: 1.0)
     )
+
+    internal func hasSameKind(as other: Configuration) -> Bool {
+        switch (self, other) {
+        case (.axial(_, _), .axial(_, _)): return true
+        case (.radial(_, _), .radial(_, _)): return true
+        case (.sweep(_, _), .sweep(_, _)): return true
+        case (.spiral(_, _, _), .spiral(_, _, _)): return true
+        case _: return false
+        }
+    }
 }
 
 extension Configuration: Equatable {

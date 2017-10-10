@@ -81,6 +81,9 @@ public class GradientRenderer {
     private let colorsBuffer: MTLBuffer
     private let locationsBuffer: MTLBuffer
 
+    private var pipelineState: MTLComputePipelineState!
+    private var previousConfiguration: Configuration?
+
     private lazy var library: MTLLibrary = {
         return GradientRenderer.library(device: self.device)
     }()
@@ -115,7 +118,8 @@ public class GradientRenderer {
 
     /// Creates a gradient renderer.
     ///
-    /// - Parameter device: the Metal device to render on
+    /// - Parameters:
+    ///   - device: the Metal device to render on
     public init(
         device: MTLDevice = MTLCreateSystemDefaultDevice()!
     ) {
@@ -151,18 +155,30 @@ public class GradientRenderer {
         )!
     }
 
+
+    /// Renders gradient into drawable according to provided configuration
+    ///
+    /// - Parameters:
+    ///   - gradient: the gradient to render
+    ///   - configuration: the gradient's drawing configuration
+    ///   - drawable: the drawable to render into
     public func render(
         gradient: Gradient,
         as configuration: Configuration,
         in drawable: CAMetalDrawable
-        ) {
+    ) {
         assert(gradient.colors.count <= GradientRenderer.maxStopsCount)
         assert(gradient.locations.count <= GradientRenderer.maxStopsCount)
         assert(gradient.colors.count == gradient.locations.count)
 
-        let commandBuffer = self.commandQueue.makeCommandBuffer()
+        guard let commandBuffer = self.commandQueue.makeCommandBuffer() else {
+            NSLog("Aborting: Could not make command buffer.")
+            return
+        }
 
         let texture = drawable.texture
+
+        let pipelineState = self.updatePipelineState(for: configuration)
 
         let uniformsBuffer = self.updateUniformsBuffer(for: gradient, as: configuration)
         let colorsBuffer = self.updateColorsBuffer(for: gradient, device: device)
@@ -175,29 +191,40 @@ public class GradientRenderer {
             depth: 1
         )
 
-        let pipelineState: MTLComputePipelineState
-        switch configuration {
-        case .axial(_, _):
-            pipelineState = try! self.device.makeComputePipelineState(function: self.axialFunction)
-        case .radial(_, _):
-            pipelineState = try! self.device.makeComputePipelineState(function: self.radialFunction)
-        case .sweep(_, _):
-            pipelineState = try! self.device.makeComputePipelineState(function: self.sweepFunction)
-        case .spiral(_, _, _):
-            pipelineState = try! self.device.makeComputePipelineState(function: self.spiralFunction)
+        guard let commandEncoder = commandBuffer.makeComputeCommandEncoder() else {
+            NSLog("Aborting: Could not make command encoder.")
+            return
         }
 
-        let commandEncoder = commandBuffer?.makeComputeCommandEncoder()
-        commandEncoder?.setComputePipelineState(pipelineState)
-        commandEncoder?.setBuffer(uniformsBuffer, offset: 0, index: 0)
-        commandEncoder?.setBuffer(colorsBuffer, offset: 0, index: 1)
-        commandEncoder?.setBuffer(locationsBuffer, offset: 0, index: 2)
-        commandEncoder?.setTexture(texture, index: 0)
-        commandEncoder?.dispatchThreadgroups(threadGroups, threadsPerThreadgroup: threadGroupSize)
-        commandEncoder?.endEncoding()
+        commandEncoder.setComputePipelineState(pipelineState)
+        commandEncoder.setBuffer(uniformsBuffer, offset: 0, index: 0)
+        commandEncoder.setBuffer(colorsBuffer, offset: 0, index: 1)
+        commandEncoder.setBuffer(locationsBuffer, offset: 0, index: 2)
+        commandEncoder.setTexture(texture, index: 0)
+        commandEncoder.dispatchThreadgroups(threadGroups, threadsPerThreadgroup: threadGroupSize)
+        commandEncoder.endEncoding()
 
-        commandBuffer?.present(drawable)
-        commandBuffer?.commit()
+        commandBuffer.present(drawable)
+        commandBuffer.commit()
+    }
+
+    private func updatePipelineState(for configuration: Configuration) -> MTLComputePipelineState {
+        if case let (state?, prevConf?) = (self.pipelineState, self.previousConfiguration) {
+            if prevConf.hasSameKind(as: configuration) {
+                return state
+            }
+        }
+
+        let function: MTLFunction
+        switch configuration {
+        case .axial(_, _): function = self.axialFunction
+        case .radial(_, _): function = self.radialFunction
+        case .sweep(_, _): function = self.sweepFunction
+        case .spiral(_, _, _): function = self.spiralFunction
+        }
+        let pipelineState = try! self.device.makeComputePipelineState(function: function)
+        self.pipelineState = pipelineState
+        return pipelineState
     }
 
     private static func library(device: MTLDevice) -> MTLLibrary {
