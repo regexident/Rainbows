@@ -89,10 +89,15 @@ public class GradientLayer: CAMetalLayer {
         guard let renderer = self.renderer else {
             return
         }
-        renderer.render(
-            gradient: self.gradient,
-            as: self.configuration,
-            in: self.nextDrawable()!
-        )
+        autoreleasepool {
+            guard let drawable = self.nextDrawable() else {
+                return
+            }
+            renderer.render(
+                gradient: self.gradient,
+                as: self.configuration,
+                in: drawable
+            )
+        }
     }
 }
