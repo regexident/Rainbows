@@ -231,11 +231,11 @@
 				TargetAttributes = {
 					BFA2DD8C1EF6AF4B002FFCF8 = {
 						CreatedOnToolsVersion = 9.0;
-						LastSwiftMigration = 0900;
+						LastSwiftMigration = 1530;
 					};
 					BFA2DDA31EF7C140002FFCF8 = {
 						CreatedOnToolsVersion = 9.0;
-						LastSwiftMigration = 0900;
+						LastSwiftMigration = 1530;
 					};
 				};
 			};
@@ -484,6 +484,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.regexident.Rainbows;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -509,6 +510,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.regexident.Rainbows;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -526,6 +528,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.regexident.RainbowsDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -543,6 +546,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.regexident.RainbowsDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
