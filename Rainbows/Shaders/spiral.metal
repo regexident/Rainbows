@@ -13,18 +13,10 @@
 #include <metal_stdlib>
 using namespace metal;
 
-struct SpiralUniforms {
-    float2 center;
-    float angle;
-    float scale;
-    uint stops;
-};
+#include "shared.h"
 
 constant float pi = 3.1415926535897932384626433832795;
 constant float pi_2 = pi * 2.0;
-
-float4 interpolate_color(constant float4 *colors, constant float *locations, uint count, float location);
-float2 fix_aspect_ratio(float2 coordinate, float aspect_ratio);
 
 kernel void spiral(
                    constant SpiralUniforms *uniforms [[buffer(0)]],

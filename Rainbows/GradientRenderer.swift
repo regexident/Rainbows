@@ -13,63 +13,17 @@
 import QuartzCore
 import Metal
 
-struct Color {
-    let red: Float32
-    let green: Float32
-    let blue: Float32
-    let alpha: Float32
+import Rainbows_Private
 
-    init(_ cgColor: CGColor) {
-        let colorSpace = CGColorSpace(name:CGColorSpace.genericRGBLinear)!
-        guard let color = cgColor.converted(to: colorSpace, intent: .defaultIntent, options: nil) else {
-            fatalError("Could not convert color to linear RGB color space.")
-        }
-        let components = color.components!.map { Float32($0) }
-        self.red = components[0]
-        self.green = components[1]
-        self.blue = components[2]
-        self.alpha = components[3]
-    }
-}
-
-struct Location {
-    let x: Float32
-    let y: Float32
-
-    init(_ cgPoint: CGPoint) {
-        self.x = Float32(cgPoint.x)
-        self.y = Float32(cgPoint.y)
-    }
-}
+typealias ShaderStops = uint1
+typealias ShaderColor = float4
+typealias ShaderVector = float2
+typealias ShaderPoint = float2
+typealias ShaderScalar = float1
+typealias ShaderLocation = float1
 
 /// Gradient renderer
 public class GradientRenderer {
-
-    private struct AxialUniforms {
-        let start: Location
-        let end: Location
-        let stops: UInt32
-    }
-
-    private struct RadialUniforms {
-        let center: Location
-        let radius: Float32
-        let stops: UInt32
-    }
-
-    private struct SweepUniforms {
-        let center: Location
-        let angle: Float32
-        let stops: UInt32
-    }
-
-    private struct SpiralUniforms {
-        let center: Location
-        let angle: Float32
-        let scale: Float32
-        let stops: UInt32
-    }
-
     private static let maxStopsCount: Int = 32
 
     private let device: MTLDevice
@@ -146,15 +100,14 @@ public class GradientRenderer {
         )!
 
         self.colorsBuffer = device.makeBuffer(
-            length: MemoryLayout<Color>.stride * GradientRenderer.maxStopsCount,
+            length: MemoryLayout<ShaderColor>.stride * GradientRenderer.maxStopsCount,
             options: [.storageModeShared]
         )!
         self.locationsBuffer = device.makeBuffer(
-            length: MemoryLayout<Location>.stride * GradientRenderer.maxStopsCount,
+            length: MemoryLayout<ShaderLocation>.stride * GradientRenderer.maxStopsCount,
             options: [.storageModeShared]
         )!
     }
-
 
     /// Renders gradient into drawable according to provided configuration
     ///
@@ -249,9 +202,9 @@ public class GradientRenderer {
         case let .axial(start, end):
             typealias Uniforms = AxialUniforms
             let uniforms = Uniforms(
-                start: Location(start),
-                end: Location(end),
-                stops: UInt32(gradient.colors.count)
+                start: shaderPoint(start),
+                end: shaderPoint(end),
+                stops: shaderStops(gradient.colors.count)
             )
             let buffer = self.axialUniformsBuffer
             let pointer = buffer.contents().bindMemory(to: Uniforms.self, capacity: 1)
@@ -260,9 +213,9 @@ public class GradientRenderer {
         case let .radial(center, radius):
             typealias Uniforms = RadialUniforms
             let uniforms = Uniforms(
-                center: Location(center),
-                radius: Float32(radius),
-                stops: UInt32(gradient.colors.count)
+                center: shaderPoint(center),
+                radius: shaderScalar(radius),
+                stops: shaderStops(gradient.colors.count)
             )
             let buffer = self.radialUniformsBuffer
             let pointer = buffer.contents().bindMemory(to: Uniforms.self, capacity: 1)
@@ -271,9 +224,9 @@ public class GradientRenderer {
         case let .sweep(center, angle):
             typealias Uniforms = SweepUniforms
             let uniforms = Uniforms(
-                center: Location(center),
-                angle: Float32(angle),
-                stops: UInt32(gradient.colors.count)
+                center: shaderPoint(center),
+                angle: shaderScalar(angle),
+                stops: shaderStops(gradient.colors.count)
             )
             let buffer = self.sweepUniformsBuffer
             let pointer = buffer.contents().bindMemory(to: Uniforms.self, capacity: 1)
@@ -282,10 +235,10 @@ public class GradientRenderer {
         case let .spiral(center, angle, scale):
             typealias Uniforms = SpiralUniforms
             let uniforms = Uniforms(
-                center: Location(center),
-                angle: Float32(angle),
-                scale: Float32(scale),
-                stops: UInt32(gradient.colors.count)
+                center: shaderPoint(center),
+                angle: shaderScalar(angle),
+                scale: shaderScalar(scale),
+                stops: shaderStops(gradient.colors.count)
             )
             let buffer = self.spiralUniformsBuffer
             let pointer = buffer.contents().bindMemory(to: Uniforms.self, capacity: 1)
@@ -304,12 +257,12 @@ public class GradientRenderer {
         let bufferLength = buffer.length
         let rawPointer = buffer.contents()
         let typedPointer = rawPointer.bindMemory(
-            to: Color.self,
-            capacity: bufferLength / MemoryLayout<Color>.stride
+            to: ShaderColor.self,
+            capacity: bufferLength / MemoryLayout<ShaderColor>.stride
         )
         let typedBufferPointer = UnsafeMutableBufferPointer(start: typedPointer, count: colorCount)
         for (index, color) in gradient.colors.enumerated() {
-            typedBufferPointer[index] = Color(color)
+            typedBufferPointer[index] = shaderColor(color)
         }
         return self.colorsBuffer
     }
@@ -324,13 +277,46 @@ public class GradientRenderer {
         let bufferLength = buffer.length
         let rawPointer = buffer.contents()
         let typedPointer = rawPointer.bindMemory(
-            to: Float32.self,
-            capacity: bufferLength / MemoryLayout<Float32>.stride
+            to: ShaderLocation.self,
+            capacity: bufferLength / MemoryLayout<ShaderLocation>.stride
         )
         let typedBufferPointer = UnsafeMutableBufferPointer(start: typedPointer, count: locationCount)
         for (index, location) in gradient.locations.enumerated() {
-            typedBufferPointer[index] = Float32(location)
+            typedBufferPointer[index] = shaderLocation(location)
         }
         return self.locationsBuffer
     }
+}
+
+private func shaderColor(_ cgColor: CGColor) -> ShaderColor {
+    let colorSpace = CGColorSpace(name: CGColorSpace.genericRGBLinear)!
+    guard let color = cgColor.converted(to: colorSpace, intent: .defaultIntent, options: nil) else {
+        fatalError("Could not convert color to linear RGB color space.")
+    }
+    let components = color.components!
+    return .init(
+        shaderScalar(components[0]),
+        shaderScalar(components[1]),
+        shaderScalar(components[2]),
+        shaderScalar(components[3])
+    )
+}
+
+private func shaderPoint(_ cgPoint: CGPoint) -> ShaderPoint {
+    .init(
+        shaderScalar(cgPoint.x),
+        shaderScalar(cgPoint.y)
+    )
+}
+
+private func shaderScalar(_ cgFloat: CGFloat) -> ShaderScalar {
+    .init(cgFloat)
+}
+
+private func shaderLocation(_ cgFloat: CGFloat) -> ShaderLocation {
+    .init(cgFloat)
+}
+
+private func shaderStops(_ int: Int) -> ShaderStops {
+    .init(UInt32(clamping: int))
 }

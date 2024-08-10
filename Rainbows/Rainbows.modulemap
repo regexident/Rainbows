@@ -1,0 +1,6 @@
+framework module Rainbows {
+    umbrella header "Rainbows.h"
+
+    export *
+    module * { export * }
+}

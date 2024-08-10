@@ -27,6 +27,7 @@
 		BFF1B2A61EF7E50C00619EAB /* SweepGradientViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF1B2A21EF7DBF300619EAB /* SweepGradientViewController.swift */; };
 		BFF1B2A81EF7E53900619EAB /* sweep.metal in Sources */ = {isa = PBXBuildFile; fileRef = BFF1B2A71EF7E53900619EAB /* sweep.metal */; };
 		BFF1B2AA1EF7F48700619EAB /* shared.metal in Sources */ = {isa = PBXBuildFile; fileRef = BFF1B2A91EF7F48700619EAB /* shared.metal */; };
+		CA042D572C67662D00FACBE6 /* shared.h in Headers */ = {isa = PBXBuildFile; fileRef = CA042D552C67658A00FACBE6 /* shared.h */; settings = {ATTRIBUTES = (Private, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +78,9 @@
 		BFF1B2A31EF7DDA600619EAB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BFF1B2A71EF7E53900619EAB /* sweep.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = sweep.metal; sourceTree = "<group>"; };
 		BFF1B2A91EF7F48700619EAB /* shared.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = shared.metal; sourceTree = "<group>"; };
+		CA042D552C67658A00FACBE6 /* shared.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = shared.h; sourceTree = "<group>"; };
+		CA042D562C6765C200FACBE6 /* Rainbows.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = Rainbows.modulemap; sourceTree = "<group>"; };
+		CA042D592C676BB700FACBE6 /* Rainbows.private.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = Rainbows.private.modulemap; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +105,7 @@
 		BF231A481EFBE2B6000BC375 /* Shaders */ = {
 			isa = PBXGroup;
 			children = (
+				CA042D552C67658A00FACBE6 /* shared.h */,
 				BFF1B2A91EF7F48700619EAB /* shared.metal */,
 				BFA2DD9E1EF6B492002FFCF8 /* axial.metal */,
 				BFA2DDBF1EF7C7FA002FFCF8 /* radial.metal */,
@@ -147,6 +152,8 @@
 				BFA2DD9A1EF6AF75002FFCF8 /* GradientRenderer.swift */,
 				BFA2DD901EF6AF4B002FFCF8 /* Rainbows.h */,
 				BFA2DD911EF6AF4B002FFCF8 /* Info.plist */,
+				CA042D562C6765C200FACBE6 /* Rainbows.modulemap */,
+				CA042D592C676BB700FACBE6 /* Rainbows.private.modulemap */,
 			);
 			path = Rainbows;
 			sourceTree = "<group>";
@@ -175,6 +182,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BFA2DD921EF6AF4B002FFCF8 /* Rainbows.h in Headers */,
+				CA042D572C67662D00FACBE6 /* shared.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -480,6 +488,8 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MODULEMAP_FILE = "$(SRCROOT)/Rainbows/Rainbows.modulemap";
+				MODULEMAP_PRIVATE_FILE = "$(SRCROOT)/Rainbows/Rainbows.private.modulemap";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++14";
 				PRODUCT_BUNDLE_IDENTIFIER = com.regexident.Rainbows;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
@@ -506,6 +516,8 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MODULEMAP_FILE = "$(SRCROOT)/Rainbows/Rainbows.modulemap";
+				MODULEMAP_PRIVATE_FILE = "$(SRCROOT)/Rainbows/Rainbows.private.modulemap";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++14";
 				PRODUCT_BUNDLE_IDENTIFIER = com.regexident.Rainbows;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";

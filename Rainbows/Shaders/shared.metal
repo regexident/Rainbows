@@ -13,8 +13,14 @@
 #include <metal_stdlib>
 using namespace metal;
 
-float4 interpolate_color(constant float4 *colors, constant float *locations, uint count, float location);
-float4 interpolate_color(constant float4 *colors, constant float *locations, uint count, float location) {
+#include "shared.h"
+
+float4 interpolate_color(
+	constant float4 *colors,
+	constant float *locations,
+	uint count,
+    float location
+) {
     uint lower = 0;
     uint upper;
     for (upper = 0; upper < count; upper++) {
@@ -29,10 +35,9 @@ float4 interpolate_color(constant float4 *colors, constant float *locations, uin
     return mix(colors[lower], colors[upper], fraction);
 }
 
-float2 fix_aspect_ratio(float2 coordinate, float aspect_ratio);
-float2 fix_aspect_ratio(float2 coordinate, float aspect_ratio) {
-    coordinate -= float2(0.5, 0.5);
-    coordinate /= float2(1.0, aspect_ratio);
-    coordinate += float2(0.5, 0.5);
-    return coordinate;
+float2 fix_aspect_ratio(float2 point, float aspect_ratio) {
+    point -= float2(0.5, 0.5);
+    point /= float2(1.0, aspect_ratio);
+    point += float2(0.5, 0.5);
+    return point;
 }

@@ -13,14 +13,7 @@
 #include <metal_stdlib>
 using namespace metal;
 
-struct AxialUniforms {
-    float2 start;
-    float2 end;
-    uint stops;
-};
-
-float4 interpolate_color(constant float4 *colors, constant float *locations, uint count, float location);
-float2 fix_aspect_ratio(float2 coordinate, float aspect_ratio);
+#include "shared.h"
 
 kernel void axial(
     constant AxialUniforms *uniforms [[buffer(0)]],
@@ -42,19 +35,19 @@ kernel void axial(
     const float aspect_ratio = dimensions.x / dimensions.y;
 
     // Get normalized 2D coordinate of output texture pixel:
-    const float2 coordinate = fix_aspect_ratio(float2(global_id) / dimensions, aspect_ratio);
+    const float2 point = fix_aspect_ratio(float2(global_id) / dimensions, aspect_ratio);
     const float2 start = fix_aspect_ratio(uniforms->start, aspect_ratio);
     const float2 end = fix_aspect_ratio(uniforms->end, aspect_ratio);
 
     const float2 gradient_direction = end - start;
-    const float2 coordinate_direction = coordinate - start;
+    const float2 point_direction = point - start;
 
-    const float numerator = dot(gradient_direction, coordinate_direction);
+    const float numerator = dot(gradient_direction, point_direction);
     const float denominator = dot(gradient_direction, gradient_direction);
 
-    const float linearLocation = saturate(numerator / denominator);
-    const float sigmoidalLocation = smoothstep(0.0, 1.0, linearLocation);
-    const float location = sigmoidalLocation;
+    const float linear_location = saturate(numerator / denominator);
+    const float sigmoidal_location = smoothstep(0.0, 1.0, linear_location);
+    const float location = sigmoidal_location;
 
     const float4 result_color = interpolate_color(colors, locations, uniforms->stops, location);
     texture.write(result_color, global_id);
